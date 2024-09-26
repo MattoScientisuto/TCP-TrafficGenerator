@@ -24,8 +24,8 @@ def choose_randpcap():
 def start_replay():
     
     replay_proc = subprocess.Popen(
-        ["sudo", "-S", "tcpreplay", "-i", "enp3s0", "--topspeed", f"{choose_randpcap()}"],
-        f'echo "Cron job executed at {get_timestamp()}" >> {confirmation_file}',
+        ["sudo", "-S", "tcpreplay", "-i", "enp3s0", f"{choose_randpcap()}"],
+        # f'echo "Cron job executed at {get_timestamp()}" >> {confirmation_file}',
         shell=True,
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
@@ -34,14 +34,14 @@ def start_replay():
     
     # Periodic check every 5 seconds to see if the .pcap replay is finished
     while True:
-        # print(choose_randpcap())
-        status = replay_proc.poll() 
+        
+        status = replay_proc.poll()
         
         if status is not None:
-            print(f"[{get_timestamp()}] done")
+            print(f"[{get_timestamp()}] tcp replay complete!")
             return status
         else:
-            print(f"[{get_timestamp()}] not done, wait 5 seconds")
+            print(f"[{get_timestamp()}] not done yet, wait 5 seconds...")
         time.sleep(5)
 
 
