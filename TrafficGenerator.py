@@ -24,7 +24,7 @@ def choose_randpcap():
 def start_replay():
     
     replay_proc = subprocess.Popen(
-        # ["sudo", "-S", "tcpreplay", "-i","wlp7s0", "-t", "-K", "./pcaps/SUEE1.pcap"],
+        ["sudo", "-S", "tcpreplay", "-i", "enp3s0", "--topspeed", f"{choose_randpcap()}"],
         f'echo "Cron job executed at {get_timestamp()}" >> {confirmation_file}',
         shell=True,
         stdin=subprocess.PIPE,
