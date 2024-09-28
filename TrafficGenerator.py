@@ -52,7 +52,7 @@ def start_replay():
             return status
 
         else:
-            print(f"[ {get_datestamp()}][{get_timestamp()} ] not done yet, wait 10 seconds...")
+            print(f"[ {get_datestamp()} ][ {get_timestamp()} ] not done yet, wait 10 seconds...")
         time.sleep(10)
 
 
